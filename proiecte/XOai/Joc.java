@@ -18,12 +18,19 @@ public class Joc {
         System.out.println("Alege X sau O:");
          player = newScanner.next().charAt(0);
          ai = (player == 'X') ? 'O' : 'X';
-         System.out.println("Alege dificultatea: 1. Usor  2. Greu");
+         System.out.println("Alege dificultatea: 1. Usor  2. Greu 3. Bebeh");
          int difficulty = newScanner.nextInt();
          if(difficulty == 1) {
                 chance = 2;
          }
-         else if(chance == 2) {
+         else if(difficulty == 2) {
+            chance = 100;
+         }
+         else if (difficulty == 3) {
+            chance = 1;
+         }
+         else {
+            System.out.println("Dificultate invalida. Setat pe Greu.");
             chance = 100;
          }
         Joc game = new Joc();
@@ -116,7 +123,7 @@ public class Joc {
                     }
                 }
             }
-            if(weak == 1) {
+            if(weak == 0) {
                 return lowScore;
             }
             else {
@@ -152,7 +159,7 @@ public class Joc {
                     board[i][j] = ai;
                     int score = MinMax(0, false);
                     board[i][j] = backup;
-                    if (weak != 1) {
+                    if (weak != 0) {
                     if(score > bestScore) {
                         bestScore = score;
                         moveRow = i;
